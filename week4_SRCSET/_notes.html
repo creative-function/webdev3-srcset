@@ -1,0 +1,72 @@
+
+SRCSET (source set):
+    1. allows you to playce multiple image sources in an image tag
+    2. allows you to change resolution only
+    3. lets the browser decide which image would be the best to load
+
+    EXAMPLE:
+
+        <img srcset="imageA-1x.jpg 1x, imageA-2X.jpg 2x," src="imageA-1x.jpg">
+            we want imageA to load (hence why we still set it as the src image aka the default)
+            we have two types, imageA-1x.jpg at 1x resolution(aka 1x= density) and imageA-2x.jpg at 2x resolution aka density.
+            *seperate images by comma*
+            *a single typo will invalide the srcset*
+
+DENSITY
+    1X,2X,ETC
+    is used on *FIXED WIDTH IMAGES ONLY*, only for if you want to mess with the resolution, not the size.
+
+FLUD WIDTH 
+
+    using fluid width, we can define the width of srcset images. 
+    EXAMPLE
+
+    <img srcset="flowers-small.jpg 480w,
+                 flowers-medium.jpg 720w, 
+                 flowers-large.jpg 1200w" 
+        sizes="100vw"
+        src="flowers-large.jpg"> 
+SIZES
+
+    sizes attribute specifies width of image on page. Can use this to define column layout changes
+
+    <img sizes="(min-width: 640px) 50vw, 100vw, etc" ...="">
+         can use SIZES to set breakpoints or view width 
+
+
+PICTURE * use sparingly *
+    builds off of srcset
+    a stricter control over when you display certain images
+        1, use for art direction    
+        2. use for multiple image formats (i.e webp or other special formats different from .png,.jpg,etc)
+        3. browser has little to no conrol (unline srcset)
+        4. *use sparingly* brower cannot control this setting
+    
+    EXAMPLE:
+    <picture class="header-splash">
+            <source media="(max-width:960px)" srcset="dist/img/macbook-header.jpg">
+            <source media="(min-width:960px)" srcset="dist/img/macbook-alt.jpg">
+            <img src="dist/img/macbook-header.jpg">
+     </picture>
+
+    
+
+
+IMAGE FORMATS
+     browser uses first image format it recognizes
+
+     EXAMPLE:
+     <picture>
+            <source srcset="dist/img/castle.webp" type="image/webp"> /*special image will be used unless browser has issue*/
+            <source srcset="dist/img/castle.jpg" type="image/jpg">  /*jpg image will be used next if recognized by broswer*/
+            <img src="dist/img/castle.jpg"> /*default*/
+     </picture>
+
+QUESTIONS:
+    Chelsea-
+         Why is macaron1280.jpg stil stretching? we tried align-items, align-self, display:block, etc. 
+         edit: seenms to be stretching on chrome, not firefox
+
+    Jasmin-
+
+     When sizing fluid width, do we tell it what size the image is or what size we want it to be?     
